@@ -29,7 +29,7 @@ function getRandomInteger(min: number, max: number): number {
 	return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
 }
 
-test("Sudoku Function", () => {
+test("Class Sudoku {} Functions", () => {
 	const relatedCells = SudokuProxy.getRelatedCells(getRandomInteger(0, 80));
 	SudokuProxy.printRelatedCells(relatedCells);
 	expect(0b1 + 0o2 + 3 + 0x4).toBe(1e1);

@@ -1,5 +1,4 @@
 import { expect, test } from "bun:test";
-import { List } from "immutable";
 import { SudokuSolver } from "../src/sudoku_solver";
 import sudokuBoards from "../data/sudoku_boards.json";
 
@@ -18,22 +17,18 @@ test("Input Sudoku Boards", () => {
 		[3, "_", 4, 8, "_", "_", 5, "_", "_"],
 		[7, 1, 5, 3, 2, 9, 8, "_", 6],
 	];
-	const equalMatrix = (
-		theMatrix: (string | number)[][],
-		anotherMatrix: (string | number)[][],
-	) => {
-		return theMatrix
-			.map((row, index) => {
-				return List(row).equals(List(anotherMatrix[index]));
-			})
-			.every(Boolean);
-	};
+	/**
+	 * @todo TypeError: Bun.inspect.table is not a function.
+	 * @see https://bun.sh/docs/api/utils#bun-inspect-table-tabulardata-properties-options
+	 */
+	// console.log(Bun.inspect.table(expectedBoard));
 
 	expect(sudokuSolver.init(simpleBoard)).toBe(true);
 	let board = sudokuSolver.getBoard();
-	expect(equalMatrix(board, expectedBoard)).toBe(true);
+	expect(Bun.deepEquals(board, expectedBoard, true)).toBe(true);
+	console.error();
 
 	expect(sudokuSolver.init(simpleBoard.split(""))).toBe(true);
 	board = sudokuSolver.getBoard();
-	expect(equalMatrix(board, expectedBoard)).toBe(true);
+	expect(Bun.deepEquals(board, expectedBoard, true)).toBe(true);
 });

@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "bun run ./src/index.ts dev",
     "start": "bun run --watch ./src/index.ts dev",
-    "test": "bun --watch test"
+    "test": "bun --watch test",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "immutable": "^4.3.7"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
